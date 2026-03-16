@@ -1,4 +1,7 @@
-const getRawValue = (formData: FormData, fieldName: string): FormDataEntryValue => {
+const getRawValue = (
+	formData: FormData,
+	fieldName: string,
+): FormDataEntryValue => {
 	const value = formData.get(fieldName);
 	if (value === null) {
 		throw new Error(`Поле "${fieldName}" не найдено`);
@@ -6,7 +9,10 @@ const getRawValue = (formData: FormData, fieldName: string): FormDataEntryValue 
 	return value;
 };
 
-export const readStringField = (formData: FormData, fieldName: string): string => {
+export const readStringField = (
+	formData: FormData,
+	fieldName: string,
+): string => {
 	const rawValue = getRawValue(formData, fieldName);
 	if (typeof rawValue !== "string") {
 		throw new Error(`Поле "${fieldName}" имеет неверный тип`);
@@ -52,13 +58,20 @@ export const readEnumField = <TValue extends string | number>(
 	const value = readStringField(formData, fieldName);
 	const normalizedAllowedValues = allowedValues.map(String);
 	if (!normalizedAllowedValues.includes(value)) {
-		throw new Error(`Поле "${fieldName}" имеет недопустимое значение "${value}"`);
+		throw new Error(
+			`Поле "${fieldName}" имеет недопустимое значение "${value}"`,
+		);
 	}
 
 	const index = normalizedAllowedValues.indexOf(value);
 	return allowedValues[index];
 };
 
-export const readBooleanField = (formData: FormData, fieldName: string): boolean => {
-	return readEnumField(formData, fieldName, ["true", "false"] as const) === "true";
+export const readBooleanField = (
+	formData: FormData,
+	fieldName: string,
+): boolean => {
+	return (
+		readEnumField(formData, fieldName, ["true", "false"] as const) === "true"
+	);
 };

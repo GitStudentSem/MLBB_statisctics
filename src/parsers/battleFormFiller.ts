@@ -46,14 +46,6 @@ const fillTeam = (
 };
 
 const fillRank = (form: HTMLFormElement, rang: IBattle["rang"]) => {
-	setFieldValue(form, "rang.prev.rangName", rang.prev.rangName);
-	setFieldValue(form, "rang.prev.rangNumber", rang.prev.rangNumber);
-	setFieldValue(form, "rang.prev.stars", rang.prev.stars);
-
-	setFieldValue(form, "rang.now.rangName", rang.now.rangName);
-	setFieldValue(form, "rang.now.rangNumber", rang.now.rangNumber);
-	setFieldValue(form, "rang.now.stars", rang.now.stars);
-
 	setFieldValue(form, "rang.starsDifference", rang.starsDifference);
 };
 

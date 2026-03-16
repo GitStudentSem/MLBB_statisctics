@@ -1,5 +1,6 @@
 import type { IHeroInfo } from "../gamesInfo";
-import { readEnumField, readNumberField, readStringField } from "./formValueReaders";
+import { heroes, type HeroesNameType } from "../heroesNames";
+import { readEnumField, readNumberField } from "./formValueReaders";
 
 const classIcons = [
 	"Шоколад",
@@ -9,9 +10,13 @@ const classIcons = [
 	"МВП проигравей команды",
 ] as const;
 
+const heroNames = Object.values(heroes).map(
+	(hero): HeroesNameType => hero.name,
+);
+
 export const parseHero = (formData: FormData, prefix: string): IHeroInfo => {
 	return {
-		heroName: readStringField(formData, `${prefix}.heroName`),
+		heroName: readEnumField(formData, `${prefix}.heroName`, heroNames),
 		kda: {
 			kill: readNumberField(formData, `${prefix}.kda.kill`),
 			death: readNumberField(formData, `${prefix}.kda.death`),
