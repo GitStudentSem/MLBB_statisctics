@@ -132,4 +132,4 @@ export interface IBattle {
 	};
 }
 
-export const battls: IBattle[] = [];;
+export const battls: IBattle[] = [];
