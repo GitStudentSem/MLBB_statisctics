@@ -1,34 +1,4 @@
-export type HeroesNameType =
-	| "Белерик"
-	| "Ханаби"
-	| "Госсен"
-	| "Гвиневра"
-	| "Сисилион"
-	| "Мия"
-	| "Вейл"
-	| "Баданг"
-	| "Алиса"
-	| "Ангела"
-	| "Тигрил"
-	| "Харит"
-	| "Клинт"
-	| "Теризла"
-	| "Нолан"
-	| "Франко"
-	| "Лилия"
-	| "Броуди"
-	| "Ли Сун Син"
-	| "Лолита"
-	| "Эймон"
-	| "Нана"
-	| "Бейн"
-	| "Эстес"
-	| "Ксавьер"
-	| "Хелкарт"
-	| "Москов"
-	| "Фанни";
-
-type HeroMeta = { name: HeroesNameType; icon: string };
+type HeroMeta = { name: string; icon: string };
 
 export const heroes = {
 	belerik: { name: "Белерик", icon: "" },
@@ -62,3 +32,4 @@ export const heroes = {
 } as const satisfies Record<string, HeroMeta>;
 
 export type HeroId = keyof typeof heroes;
+export type HeroesNameType = (typeof heroes)[HeroId]["name"];
