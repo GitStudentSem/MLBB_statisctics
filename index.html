@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MLBB Roamer: форма матча</title>
+  </head>
+  <body>
+    <main class="layout">
+      <h1>Заполнение данных матча MLBB</h1>
+      <p class="lead">
+        Форма соответствует структуре данных из схемы:
+        <code>IBattle</code>, <code>IHeroInfo</code>, <code>IRangInfo</code>.
+      </p>
+
+      <form id="battle-form" class="stack">
+        <section class="section">
+          <h2>Основная информация о матче</h2>
+          <div class="grid grid-3">
+            <label>
+              <span>Результат</span>
+              <select name="win">
+                <option value="true">Победа</option>
+                <option value="false">Поражение</option>
+              </select>
+            </label>
+            <label>
+              <span>Дата игры</span>
+              <input type="date" name="date" />
+            </label>
+            <label>
+              <span>Длительность битвы (сек.)</span>
+              <input type="number" min="0" step="1" name="battleTime" />
+            </label>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Счет игры</h2>
+          <div class="grid grid-2">
+            <label>
+              <span>Убийства моей команды</span>
+              <input type="number" min="0" step="1" name="score.myTeam" />
+            </label>
+            <label>
+              <span>Убийства вражеской команды</span>
+              <input type="number" min="0" step="1" name="score.enemyTeam" />
+            </label>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Ранг</h2>
+          <div class="grid grid-2">
+            <fieldset class="card">
+              <legend>Предыдущий ранг</legend>
+              <div class="grid grid-3">
+                <label>
+                  <span>Имя ранга</span>
+                  <select name="rang.prev.rangName">
+                    <option value="Эпик">Эпик</option>
+                    <option value="Легенда" selected>Легенда</option>
+                    <option value="Мифик">Мифик</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Номер ранга</span>
+                  <select name="rang.prev.rangNumber">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected>5</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Звезды</span>
+                  <input type="number" min="0" step="1" name="rang.prev.stars" />
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="card">
+              <legend>Текущий ранг</legend>
+              <div class="grid grid-3">
+                <label>
+                  <span>Имя ранга</span>
+                  <select name="rang.now.rangName">
+                    <option value="Эпик">Эпик</option>
+                    <option value="Легенда" selected>Легенда</option>
+                    <option value="Мифик">Мифик</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Номер ранга</span>
+                  <select name="rang.now.rangNumber">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4" selected>4</option>
+                    <option value="5">5</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Звезды</span>
+                  <input type="number" min="0" step="1" name="rang.now.stars" />
+                </label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="grid grid-1">
+            <label>
+              <span>Изменение звезд после матча</span>
+              <select name="rang.starsDifference">
+                <option value="-1">-1</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Мой герой</h2>
+          <fieldset class="card">
+            <legend>Статистика моего героя</legend>
+            <label>
+              <span>Имя героя</span>
+              <input type="text" name="myHero.heroName" placeholder="Например, Tigreal" />
+            </label>
+            <div class="grid grid-3">
+              <label>
+                <span>K (убийства)</span>
+                <input type="number" min="0" step="1" name="myHero.kda.kill" />
+              </label>
+              <label>
+                <span>D (смерти)</span>
+                <input type="number" min="0" step="1" name="myHero.kda.death" />
+              </label>
+              <label>
+                <span>A (помощь)</span>
+                <input type="number" min="0" step="1" name="myHero.kda.help" />
+              </label>
+            </div>
+            <div class="grid grid-2">
+              <label>
+                <span>Класс (очки)</span>
+                <input type="number" min="3" step="0.1" name="myHero.class.points" />
+              </label>
+              <label>
+                <span>Иконка класса</span>
+                <select name="myHero.class.icon">
+                  <option value="Шоколад">Шоколад</option>
+                  <option value="Серебро">Серебро</option>
+                  <option value="Золото" selected>Золото</option>
+                  <option value="МВП победившей команды">МВП победившей команды</option>
+                  <option value="МВП проигравей команды">МВП проигравей команды</option>
+                </select>
+              </label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="section">
+          <h2>Союзная команда</h2>
+          <div id="my-team-section" class="stack"></div>
+        </section>
+
+        <section class="section">
+          <h2>Вражеская команда</h2>
+          <div id="enemy-team-section" class="stack"></div>
+        </section>
+
+        <div class="actions">
+          <button type="submit">Сохранить матч</button>
+          <button type="reset" class="secondary">Очистить форму</button>
+        </div>
+      </form>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
