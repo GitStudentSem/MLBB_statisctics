@@ -1,23 +1,25 @@
 import { useState } from "react";
+import type { IBattle, IRangInfo } from "../gamesInfo";
 import type { HeroesNameType } from "../heroesNames";
 import { heroes } from "../heroesNames";
-import type { IBattle, IRangInfo } from "../gamesInfo";
 import { HeroInfoInput } from "./HeroInfoInput";
 import {
 	createDefaultHeroInfo,
-	mapHeroFormToHeroInfo,
 	type HeroInfoFormState,
+	mapHeroFormToHeroInfo,
 } from "./heroInfoForm.utils";
 import { NumberInput } from "./NumberInput";
 import { TeamInput } from "./TeamInput";
 
 type NewGameFormProps = {
-	onCreate: (battle: IBattle, rangInfo: IRangInfo) => void;
+	onCreate: (battle: IBattle) => void;
 };
 
 const rangNames: Array<IRangInfo["rangName"]> = ["Эпик", "Легенда", "Мифик"];
 const rangNumbers: Array<IRangInfo["rangNumber"]> = [1, 2, 3, 4, 5];
-const starsDifferenceValues: Array<IBattle["rang"]["starsDifference"]> = [-1, 0, 1];
+const starsDifferenceValues: Array<IBattle["rang"]["starsDifference"]> = [
+	-1, 0, 1,
+];
 
 function createTeam(heroName: HeroesNameType): HeroInfoFormState[] {
 	return Array.from({ length: 5 }, () => createDefaultHeroInfo(heroName));
@@ -31,7 +33,10 @@ function asTupleOfFive<T>(arr: T[]): [T, T, T, T, T] {
 	return [arr[0], arr[1], arr[2], arr[3], arr[4]];
 }
 
-function formatBattleForClipboard(battle: IBattle, dateForConstructor: string): string {
+function formatBattleForClipboard(
+	battle: IBattle,
+	dateForConstructor: string,
+): string {
 	const serialized = JSON.stringify(
 		{
 			...battle,
@@ -47,26 +52,34 @@ function formatBattleForClipboard(battle: IBattle, dateForConstructor: string): 
 }
 
 export function NewGameForm({ onCreate }: NewGameFormProps) {
-	const heroNames = Object.values(heroes).map((hero) => hero.name) as HeroesNameType[];
+	const heroNames = Object.values(heroes).map(
+		(hero) => hero.name,
+	) as HeroesNameType[];
 	const defaultHeroName = heroNames[0];
 
 	const [win, setWin] = useState(true);
 	const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
 	const [battleTime, setBattleTime] = useState(10);
-	const [myHero, setMyHero] = useState(() => createDefaultHeroInfo(defaultHeroName));
-	const [myTeam, setMyTeam] = useState<HeroInfoFormState[]>(() => createTeam(defaultHeroName));
-	const [enemyTeam, setEnemyTeam] = useState<HeroInfoFormState[]>(() => createTeam(defaultHeroName));
+	const [myHero, setMyHero] = useState(() =>
+		createDefaultHeroInfo(defaultHeroName),
+	);
+	const [myTeam, setMyTeam] = useState<HeroInfoFormState[]>(() =>
+		createTeam(defaultHeroName),
+	);
+	const [enemyTeam, setEnemyTeam] = useState<HeroInfoFormState[]>(() =>
+		createTeam(defaultHeroName),
+	);
 	const [myTeamScore, setMyTeamScore] = useState(0);
 	const [enemyTeamScore, setEnemyTeamScore] = useState(0);
-	const [starsDifference, setStarsDifference] = useState<IBattle["rang"]["starsDifference"]>(0);
-	const [rangName, setRangName] = useState<IRangInfo["rangName"]>("Легенда");
-	const [rangNumber, setRangNumber] = useState<IRangInfo["rangNumber"]>(5);
-	const [stars, setStars] = useState(0);
+	const [starsDifference, setStarsDifference] =
+		useState<IBattle["rang"]["starsDifference"]>(0);
 	const [submitError, setSubmitError] = useState("");
 	const [copyStatus, setCopyStatus] = useState("");
 	const [createdGames, setCreatedGames] = useState(0);
 
-	const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
+	const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (
+		event,
+	) => {
 		event.preventDefault();
 
 		try {
@@ -86,13 +99,7 @@ export function NewGameForm({ onCreate }: NewGameFormProps) {
 				},
 			};
 
-			const rangInfo: IRangInfo = {
-				rangName,
-				rangNumber,
-				stars,
-			};
-
-			onCreate(battle, rangInfo);
+			onCreate(battle);
 			setCreatedGames((value) => value + 1);
 			setSubmitError("");
 
@@ -102,14 +109,22 @@ export function NewGameForm({ onCreate }: NewGameFormProps) {
 			}
 
 			try {
-				await navigator.clipboard.writeText(formatBattleForClipboard(battle, date));
+				await navigator.clipboard.writeText(
+					formatBattleForClipboard(battle, date),
+				);
 				setCopyStatus("Объект игры скопирован в буфер обмена");
 			} catch {
-				setCopyStatus("Игра добавлена, но не удалось скопировать объект в буфер обмена");
+				setCopyStatus(
+					"Игра добавлена, но не удалось скопировать объект в буфер обмена",
+				);
 			}
 		} catch (error) {
 			setCopyStatus("");
-			setSubmitError(error instanceof Error ? error.message : "Не удалось собрать данные игры");
+			setSubmitError(
+				error instanceof Error
+					? error.message
+					: "Не удалось собрать данные игры",
+			);
 		}
 	};
 
@@ -122,14 +137,22 @@ export function NewGameForm({ onCreate }: NewGameFormProps) {
 				<div className="two-col-grid">
 					<label className="field">
 						<span>Результат</span>
-						<select value={win ? "win" : "lose"} onChange={(event) => setWin(event.currentTarget.value === "win")}>
+						<select
+							value={win ? "win" : "lose"}
+							onChange={(event) => setWin(event.currentTarget.value === "win")}
+						>
 							<option value="win">Победа</option>
 							<option value="lose">Поражение</option>
 						</select>
 					</label>
 					<label className="field">
 						<span>Дата</span>
-						<input type="date" value={date} onChange={(event) => setDate(event.currentTarget.value)} required />
+						<input
+							type="date"
+							value={date}
+							onChange={(event) => setDate(event.currentTarget.value)}
+							required
+						/>
 					</label>
 					<NumberInput
 						label="Время битвы (сек.)"
@@ -137,7 +160,12 @@ export function NewGameForm({ onCreate }: NewGameFormProps) {
 						onChange={setBattleTime}
 						min={0}
 					/>
-					<NumberInput label="Очки моей команды" value={myTeamScore} onChange={setMyTeamScore} min={0} />
+					<NumberInput
+						label="Очки моей команды"
+						value={myTeamScore}
+						onChange={setMyTeamScore}
+						min={0}
+					/>
 					<NumberInput
 						label="Очки вражеской команды"
 						value={enemyTeamScore}
@@ -149,7 +177,11 @@ export function NewGameForm({ onCreate }: NewGameFormProps) {
 						<select
 							value={String(starsDifference)}
 							onChange={(event) =>
-								setStarsDifference(Number(event.currentTarget.value) as IBattle["rang"]["starsDifference"])
+								setStarsDifference(
+									Number(
+										event.currentTarget.value,
+									) as IBattle["rang"]["starsDifference"],
+								)
 							}
 						>
 							{starsDifferenceValues.map((value) => (
@@ -162,42 +194,24 @@ export function NewGameForm({ onCreate }: NewGameFormProps) {
 				</div>
 			</section>
 
-			<HeroInfoInput title="Мой герой" heroNames={heroNames} value={myHero} onChange={setMyHero} />
-			<TeamInput title="Моя команда" heroNames={heroNames} value={myTeam} onChange={setMyTeam} />
-			<TeamInput title="Вражеская команда" heroNames={heroNames} value={enemyTeam} onChange={setEnemyTeam} />
-
-			<section className="card">
-				<h2>Текущий ранг аккаунта</h2>
-				<div className="three-col-grid">
-					<label className="field">
-						<span>Название ранга</span>
-						<select
-							value={rangName}
-							onChange={(event) => setRangName(event.currentTarget.value as IRangInfo["rangName"])}
-						>
-							{rangNames.map((name) => (
-								<option key={name} value={name}>
-									{name}
-								</option>
-							))}
-						</select>
-					</label>
-					<label className="field">
-						<span>Номер ранга</span>
-						<select
-							value={String(rangNumber)}
-							onChange={(event) => setRangNumber(Number(event.currentTarget.value) as IRangInfo["rangNumber"])}
-						>
-							{rangNumbers.map((numberValue) => (
-								<option key={numberValue} value={numberValue}>
-									{numberValue}
-								</option>
-							))}
-						</select>
-					</label>
-					<NumberInput label="Количество звезд" value={stars} onChange={setStars} min={0} />
-				</div>
-			</section>
+			<HeroInfoInput
+				title="Мой герой"
+				heroNames={heroNames}
+				value={myHero}
+				onChange={setMyHero}
+			/>
+			<TeamInput
+				title="Моя команда"
+				heroNames={heroNames}
+				value={myTeam}
+				onChange={setMyTeam}
+			/>
+			<TeamInput
+				title="Вражеская команда"
+				heroNames={heroNames}
+				value={enemyTeam}
+				onChange={setEnemyTeam}
+			/>
 
 			<div className="actions-row">
 				<button type="submit">Добавить игру</button>

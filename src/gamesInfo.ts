@@ -128,9 +128,9 @@ export interface IBattle {
  * @description Стартовый ранг аккаунта для отсчета прогресса
  */
 export const accountStartingRang: IRangInfo = {
-	rangName: "Легенда",
-	rangNumber: 5,
-	stars: 2,
+	rangName: "Эпик",
+	rangNumber: 1,
+	stars: 3,
 };
 
 export const battls: IBattle[] = [

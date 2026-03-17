@@ -9,9 +9,8 @@ function App() {
 	return (
 		<main className="page">
 			<NewGameForm
-				onCreate={(newBattle, newRangInfo) => {
+				onCreate={(newBattle) => {
 					setGames((prevGames) => [...prevGames, newBattle]);
-					setRangInfo(newRangInfo);
 				}}
 			/>
 			<section className="card">

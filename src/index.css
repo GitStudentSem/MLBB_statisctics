@@ -37,11 +37,7 @@ body {
 	gap: 12px;
 }
 
-.three-col-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	gap: 12px;
-}
+
 
 .team-grid {
 	display: grid;
