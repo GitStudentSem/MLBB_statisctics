@@ -1,0 +1,104 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	background: #0f1115;
+	color: #f2f4f8;
+}
+
+.page {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 24px;
+	display: grid;
+	gap: 16px;
+}
+
+.new-game-form {
+	display: grid;
+	gap: 16px;
+}
+
+.card {
+	border: 1px solid #2a3040;
+	background: #161b24;
+	border-radius: 12px;
+	padding: 16px;
+}
+
+.two-col-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 12px;
+}
+
+.three-col-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 12px;
+}
+
+.team-grid {
+	display: grid;
+	gap: 12px;
+}
+
+.hero-input-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+	gap: 10px;
+}
+
+.field {
+	display: grid;
+	gap: 6px;
+	font-size: 14px;
+}
+
+.field > span {
+	color: #b8c1d9;
+}
+
+input,
+select,
+button {
+	font: inherit;
+}
+
+input,
+select {
+	background: #0f1115;
+	color: #f2f4f8;
+	border: 1px solid #3d4760;
+	border-radius: 8px;
+	padding: 8px 10px;
+}
+
+.actions-row {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+button {
+	background: #4f7fff;
+	border: none;
+	color: white;
+	padding: 10px 14px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+button:hover {
+	background: #6a92ff;
+}
+
+.error-text {
+	color: #ff7780;
+	margin: 0;
+}

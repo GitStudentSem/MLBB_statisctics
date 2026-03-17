@@ -139,7 +139,7 @@ export const battls: IBattle[] = [
 		date: new Date("2026-03-16"),
 		battleTime: 60 * 23 + 6,
 		myHero: {
-			heroName: heroes.belerik.name,
+			heroName: heroes.belerick.name,
 			kda: { kill: 9, death: 6, help: 17 },
 			class: { points: 10.9, icon: "МВП победившей команды" },
 		},
@@ -150,22 +150,22 @@ export const battls: IBattle[] = [
 				class: { points: 7.3, icon: "Золото" },
 			},
 			{
-				heroName: heroes.gossen.name,
+				heroName: heroes.gusion.name,
 				kda: { kill: 12, death: 12, help: 7 },
 				class: { points: 5.7, icon: "Серебро" },
 			},
 			{
-				heroName: heroes.belerik.name,
+				heroName: heroes.belerick.name,
 				kda: { kill: 9, death: 6, help: 17 },
 				class: { points: 10.9, icon: "МВП победившей команды" },
 			},
 			{
-				heroName: heroes.gvinevra.name,
+				heroName: heroes.guinevere.name,
 				kda: { kill: 5, death: 10, help: 12 },
 				class: { points: 6.4, icon: "Серебро" },
 			},
 			{
-				heroName: heroes.sicilion.name,
+				heroName: heroes.cecillion.name,
 				kda: { kill: 6, death: 5, help: 17 },
 				class: { points: 0, icon: "Золото" },
 			},
@@ -177,7 +177,7 @@ export const battls: IBattle[] = [
 				class: { points: 7.1, icon: "Золото" },
 			},
 			{
-				heroName: heroes.veil.name,
+				heroName: heroes.vale.name,
 				kda: { kill: 14, death: 5, help: 14 },
 				class: { points: 11.7, icon: "МВП проигравей команды" },
 			},
@@ -187,7 +187,7 @@ export const battls: IBattle[] = [
 				class: { points: 6.7, icon: "Серебро" },
 			},
 			{
-				heroName: heroes.alisa.name,
+				heroName: heroes.alice.name,
 				kda: { kill: 7, death: 7, help: 14 },
 				class: { points: 7.9, icon: "Золото" },
 			},
@@ -216,7 +216,7 @@ export const battls: IBattle[] = [
 		},
 		myTeam: [
 			{
-				heroName: heroes.eymon.name,
+				heroName: heroes.aamon.name,
 				kda: { kill: 3, death: 4, help: 1 },
 				class: { points: 4.4, icon: "Серебро" },
 			},
@@ -243,7 +243,7 @@ export const battls: IBattle[] = [
 		],
 		enemyTeam: [
 			{
-				heroName: heroes.bein.name,
+				heroName: heroes.bane.name,
 				kda: { kill: 3, death: 7, help: 3 },
 				class: { points: 4.7, icon: "Серебро" },
 			},
@@ -253,12 +253,12 @@ export const battls: IBattle[] = [
 				class: { points: 8.8, icon: "Золото" },
 			},
 			{
-				heroName: heroes.ksavier.name,
+				heroName: heroes.xavier.name,
 				kda: { kill: 4, death: 0, help: 10 },
 				class: { points: 10.3, icon: "Золото" },
 			},
 			{
-				heroName: heroes.helcart.name,
+				heroName: heroes.helcurt.name,
 				kda: { kill: 3, death: 4, help: 5 },
 				class: { points: 5.7, icon: "Серебро" },
 			},
@@ -274,6 +274,290 @@ export const battls: IBattle[] = [
 		},
 		rang: {
 			starsDifference: -1,
+		},
+	},
+	{
+		win: true,
+		date: new Date("2026-03-17"),
+		battleTime: 60 * 18 + 14,
+		myHero: {
+			heroName: heroes.belerick.name,
+			kda: { kill: 4, death: 4, help: 22 },
+			class: { points: 10.9, icon: "МВП победившей команды" },
+		},
+		myTeam: [
+			{
+				heroName: heroes.gord.name,
+				kda: { kill: 16, death: 8, help: 6 },
+				class: { points: 8.5, icon: "Золото" },
+			},
+			{
+				heroName: heroes.belerick.name,
+				kda: { kill: 4, death: 4, help: 22 },
+				class: { points: 10.9, icon: "МВП победившей команды" },
+			},
+			{
+				heroName: heroes.suyou.name,
+				kda: { kill: 5, death: 5, help: 14 },
+				class: { points: 7.8, icon: "Золото" },
+			},
+			{
+				heroName: heroes.clint.name,
+				kda: { kill: 9, death: 8, help: 4 },
+				class: { points: 6.7, icon: "Серебро" },
+			},
+			{
+				heroName: heroes.silvanna.name,
+				kda: { kill: 7, death: 6, help: 7 },
+				class: { points: 6.5, icon: "Серебро" },
+			},
+		],
+		enemyTeam: [
+			{
+				heroName: heroes.badang.name,
+				kda: { kill: 4, death: 6, help: 15 },
+				class: { points: 8.8, icon: "МВП проигравей команды" },
+			},
+			{
+				heroName: heroes.hanabi.name,
+				kda: { kill: 4, death: 9, help: 8 },
+				class: { points: 5.9, icon: "Серебро" },
+			},
+			{
+				heroName: heroes.harley.name,
+				kda: { kill: 12, death: 7, help: 4 },
+				class: { points: 7.2, icon: "Золото" },
+			},
+			{
+				heroName: heroes.selena.name,
+				kda: { kill: 4, death: 9, help: 5 },
+				class: { points: 4.4, icon: "Серебро" },
+			},
+			{
+				heroName: heroes.gusion.name,
+				kda: { kill: 7, death: 10, help: 8 },
+				class: { points: 5.7, icon: "Серебро" },
+			},
+		],
+		score: {
+			myTeam: 41,
+			enemyTeam: 31,
+		},
+		rang: {
+			starsDifference: 1,
+		},
+	},
+	{
+		win: true,
+		date: new Date("2026-03-17"),
+		battleTime: 60 * 10 + 25,
+		myHero: {
+			heroName: heroes.minotaur.name,
+			kda: { kill: 2, death: 3, help: 20 },
+			class: { points: 11.1, icon: "Золото" },
+		},
+		myTeam: [
+			{
+				heroName: heroes.thamuz.name,
+				kda: { kill: 6, death: 1, help: 7 },
+				class: { points: 8.9, icon: "Золото" },
+			},
+			{
+				heroName: heroes.minotaur.name,
+				kda: { kill: 2, death: 3, help: 20 },
+				class: { points: 11.1, icon: "Золото" },
+			},
+			{
+				heroName: heroes.karrie.name,
+				kda: { kill: 14, death: 1, help: 6 },
+				class: { points: 11.7, icon: "МВП победившей команды" },
+			},
+			{
+				heroName: heroes.saber.name,
+				kda: { kill: 5, death: 4, help: 10 },
+				class: { points: 7.9, icon: "Золото" },
+			},
+			{
+				heroName: heroes.change.name,
+				kda: { kill: 8, death: 1, help: 16 },
+				class: { points: 11.4, icon: "Золото" },
+			},
+		],
+		enemyTeam: [
+			{
+				heroName: heroes.freya.name,
+				kda: { kill: 5, death: 6, help: 2 },
+				class: { points: 5.8, icon: "Серебро" },
+			},
+			{
+				heroName: heroes.granger.name,
+				kda: { kill: 0, death: 6, help: 2 },
+				class: { points: 3.0, icon: "Шоколад" },
+			},
+			{
+				heroName: heroes.vexana.name,
+				kda: { kill: 4, death: 5, help: 3 },
+				class: { points: 5.6, icon: "Серебро" },
+			},
+			{
+				heroName: heroes.paquito.name,
+				kda: { kill: 0, death: 8, help: 4 },
+				class: { points: 3.0, icon: "Шоколад" },
+			},
+			{
+				heroName: heroes.kalea.name,
+				kda: { kill: 1, death: 10, help: 6 },
+				class: { points: 4.7, icon: "Серебро" },
+			},
+		],
+		score: {
+			myTeam: 35,
+			enemyTeam: 10,
+		},
+		rang: {
+			starsDifference: 1,
+		},
+	},
+	{
+		win: true,
+		date: new Date("2026-03-17"),
+		battleTime: 60 * 13 + 8,
+		myHero: {
+			heroName: heroes.belerick.name,
+			kda: { kill: 7, death: 2, help: 19 },
+			class: { points: 12.0, icon: "МВП победившей команды" },
+		},
+		myTeam: [
+			{
+				heroName: heroes.nana.name,
+				kda: { kill: 6, death: 3, help: 10 },
+				class: { points: 8.6, icon: "Золото" },
+			},
+			{
+				heroName: heroes.belerick.name,
+				kda: { kill: 7, death: 2, help: 19 },
+				class: { points: 12.0, icon: "МВП победившей команды" },
+			},
+			{
+				heroName: heroes.paquito.name,
+				kda: { kill: 11, death: 5, help: 7 },
+				class: { points: 9.0, icon: "Золото" },
+			},
+			{
+				heroName: heroes.lesley.name,
+				kda: { kill: 6, death: 4, help: 4 },
+				class: { points: 6.7, icon: "Серебро" },
+			},
+			{
+				heroName: heroes.zilong.name,
+				kda: { kill: 5, death: 1, help: 7 },
+				class: { points: 8.4, icon: "Золото" },
+			},
+		],
+		enemyTeam: [
+			{
+				heroName: heroes.dyrroth.name,
+				kda: { kill: 3, death: 8, help: 1 },
+				class: { points: 3.4, icon: "Серебро" },
+			},
+			{
+				heroName: heroes.ixia.name,
+				kda: { kill: 2, death: 6, help: 2 },
+				class: { points: 4.4, icon: "Серебро" },
+			},
+			{
+				heroName: heroes.helcurt.name,
+				kda: { kill: 6, death: 4, help: 3 },
+				class: { points: 8.0, icon: "МВП проигравей команды" },
+			},
+			{
+				heroName: heroes.zetian.name,
+				kda: { kill: 0, death: 10, help: 5 },
+				class: { points: 3.3, icon: "Шоколад" },
+			},
+			{
+				heroName: heroes.freya.name,
+				kda: { kill: 4, death: 7, help: 3 },
+				class: { points: 5.5, icon: "Серебро" },
+			},
+		],
+		score: {
+			myTeam: 35,
+			enemyTeam: 15,
+		},
+		rang: {
+			starsDifference: 1,
+		},
+	},
+	{
+		win: true,
+		date: new Date("2026-03-17"),
+		battleTime: 60 * 14 + 58,
+		myHero: {
+			heroName: heroes.belerick.name,
+			kda: { kill: 3, death: 9, help: 16 },
+			class: { points: 7.4, icon: "Золото" },
+		},
+		myTeam: [
+			{
+				heroName: heroes.moskov.name,
+				kda: { kill: 8, death: 7, help: 14 },
+				class: { points: 9.7, icon: "Золото" },
+			},
+			{
+				heroName: heroes.belerick.name,
+				kda: { kill: 3, death: 9, help: 16 },
+				class: { points: 7.4, icon: "Золото" },
+			},
+			{
+				heroName: heroes.xBorg.name,
+				kda: { kill: 10, death: 1, help: 10 },
+				class: { points: 9.0, icon: "МВП победившей команды" },
+			},
+			{
+				heroName: heroes.lancelot.name,
+				kda: { kill: 3, death: 4, help: 7 },
+				class: { points: 5.7, icon: "Серебро" },
+			},
+			{
+				heroName: heroes.lunox.name,
+				kda: { kill: 10, death: 8, help: 10 },
+				class: { points: 7.8, icon: "Золото" },
+			},
+		],
+		enemyTeam: [
+			{
+				heroName: heroes.hylos.name,
+				kda: { kill: 2, death: 11, help: 14 },
+				class: { points: 6.6, icon: "Серебро" },
+			},
+			{
+				heroName: heroes.clint.name,
+				kda: { kill: 8, death: 6, help: 9 },
+				class: { points: 8.8, icon: "МВП проигравей команды" },
+			},
+			{
+				heroName: heroes.cici.name,
+				kda: { kill: 8, death: 7, help: 4 },
+				class: { points: 6.4, icon: "Серебро" },
+			},
+			{
+				heroName: heroes.zhuxin.name,
+				kda: { kill: 3, death: 5, help: 15 },
+				class: { points: 8.6, icon: "Золото" },
+			},
+			{
+				heroName: heroes.hayabusa.name,
+				kda: { kill: 7, death: 5, help: 3 },
+				class: { points: 5.7, icon: "Серебро" },
+			},
+		],
+		score: {
+			myTeam: 34,
+			enemyTeam: 28,
+		},
+		rang: {
+			starsDifference: 1,
 		},
 	},
 ];
