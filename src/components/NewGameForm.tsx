@@ -31,6 +31,21 @@ function asTupleOfFive<T>(arr: T[]): [T, T, T, T, T] {
 	return [arr[0], arr[1], arr[2], arr[3], arr[4]];
 }
 
+function formatBattleForClipboard(battle: IBattle, dateForConstructor: string): string {
+	const serialized = JSON.stringify(
+		{
+			...battle,
+			date: dateForConstructor,
+		},
+		null,
+		"\t",
+	);
+
+	return `${serialized
+		.replace(/"([A-Za-z_][A-Za-z0-9_]*)":/g, "$1:")
+		.replace(/date:\\s*"([0-9-]+)"/, 'date: new Date("$1")')},`;
+}
+
 export function NewGameForm({ onCreate }: NewGameFormProps) {
 	const heroNames = Object.values(heroes).map((hero) => hero.name) as HeroesNameType[];
 	const defaultHeroName = heroNames[0];
@@ -48,9 +63,10 @@ export function NewGameForm({ onCreate }: NewGameFormProps) {
 	const [rangNumber, setRangNumber] = useState<IRangInfo["rangNumber"]>(5);
 	const [stars, setStars] = useState(0);
 	const [submitError, setSubmitError] = useState("");
+	const [copyStatus, setCopyStatus] = useState("");
 	const [createdGames, setCreatedGames] = useState(0);
 
-	const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+	const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
 		event.preventDefault();
 
 		try {
@@ -79,7 +95,20 @@ export function NewGameForm({ onCreate }: NewGameFormProps) {
 			onCreate(battle, rangInfo);
 			setCreatedGames((value) => value + 1);
 			setSubmitError("");
+
+			if (!navigator.clipboard?.writeText) {
+				setCopyStatus("Игра добавлена, но буфер обмена недоступен");
+				return;
+			}
+
+			try {
+				await navigator.clipboard.writeText(formatBattleForClipboard(battle, date));
+				setCopyStatus("Объект игры скопирован в буфер обмена");
+			} catch {
+				setCopyStatus("Игра добавлена, но не удалось скопировать объект в буфер обмена");
+			}
 		} catch (error) {
+			setCopyStatus("");
 			setSubmitError(error instanceof Error ? error.message : "Не удалось собрать данные игры");
 		}
 	};
@@ -174,6 +203,7 @@ export function NewGameForm({ onCreate }: NewGameFormProps) {
 				<button type="submit">Добавить игру</button>
 				{createdGames > 0 && <span>Добавлено игр: {createdGames}</span>}
 			</div>
+			{copyStatus && <p>{copyStatus}</p>}
 			{submitError && <p className="error-text">{submitError}</p>}
 		</form>
 	);

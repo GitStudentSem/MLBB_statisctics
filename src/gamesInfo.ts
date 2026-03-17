@@ -560,4 +560,301 @@ export const battls: IBattle[] = [
 			starsDifference: 1,
 		},
 	},
+	{
+		win: false,
+		date: new Date("2026-03-17"),
+		battleTime: 1043,
+		myHero: {
+			heroName: "Белерик",
+			kda: {
+				kill: 3,
+				death: 7,
+				help: 19,
+			},
+			class: {
+				points: 8.3,
+				icon: "Золото",
+			},
+		},
+		myTeam: [
+			{
+				heroName: "Глу",
+				kda: {
+					kill: 3,
+					death: 2,
+					help: 19,
+				},
+				class: {
+					points: 10.7,
+					icon: "МВП проигравей команды",
+				},
+			},
+			{
+				heroName: "Белерик",
+				kda: {
+					kill: 3,
+					death: 7,
+					help: 19,
+				},
+				class: {
+					points: 8.3,
+					icon: "Золото",
+				},
+			},
+			{
+				heroName: "Лесли",
+				kda: {
+					kill: 10,
+					death: 6,
+					help: 11,
+				},
+				class: {
+					points: 8.6,
+					icon: "Золото",
+				},
+			},
+			{
+				heroName: "Фредрин",
+				kda: {
+					kill: 5,
+					death: 7,
+					help: 11,
+				},
+				class: {
+					points: 6.7,
+					icon: "Серебро",
+				},
+			},
+			{
+				heroName: "Селена",
+				kda: {
+					kill: 16,
+					death: 6,
+					help: 4,
+				},
+				class: {
+					points: 9.1,
+					icon: "Золото",
+				},
+			},
+		],
+		enemyTeam: [
+			{
+				heroName: "Минотавр",
+				kda: {
+					kill: 3,
+					death: 4,
+					help: 10,
+				},
+				class: {
+					points: 8.5,
+					icon: "МВП победившей команды",
+				},
+			},
+			{
+				heroName: "Пополь и Купа",
+				kda: {
+					kill: 7,
+					death: 7,
+					help: 7,
+				},
+				class: {
+					points: 6.9,
+					icon: "Серебро",
+				},
+			},
+			{
+				heroName: "Мия",
+				kda: {
+					kill: 3,
+					death: 12,
+					help: 8,
+				},
+				class: {
+					points: 4.1,
+					icon: "Серебро",
+				},
+			},
+			{
+				heroName: "Валир",
+				kda: {
+					kill: 8,
+					death: 8,
+					help: 6,
+				},
+				class: {
+					points: 6.5,
+					icon: "Серебро",
+				},
+			},
+			{
+				heroName: "Сан",
+				kda: {
+					kill: 7,
+					death: 6,
+					help: 8,
+				},
+				class: {
+					points: 8.1,
+					icon: "Золото",
+				},
+			},
+		],
+		score: {
+			myTeam: 37,
+			enemyTeam: 28,
+		},
+		rang: {
+			starsDifference: -1,
+		},
+	},
 ];
+
+const testBattle: IBattle = {
+	win: true,
+	date: new Date("2026-03-17"),
+	battleTime: 601,
+	myHero: {
+		heroName: "Эймон",
+		kda: {
+			kill: 0,
+			death: 0,
+			help: 0,
+		},
+		class: {
+			points: 3,
+			icon: "Серебро",
+		},
+	},
+	myTeam: [
+		{
+			heroName: "Эймон",
+			kda: {
+				kill: 0,
+				death: 0,
+				help: 0,
+			},
+			class: {
+				points: 3,
+				icon: "Серебро",
+			},
+		},
+		{
+			heroName: "Эймон",
+			kda: {
+				kill: 0,
+				death: 0,
+				help: 0,
+			},
+			class: {
+				points: 3,
+				icon: "Серебро",
+			},
+		},
+		{
+			heroName: "Эймон",
+			kda: {
+				kill: 0,
+				death: 0,
+				help: 0,
+			},
+			class: {
+				points: 3,
+				icon: "Серебро",
+			},
+		},
+		{
+			heroName: "Эймон",
+			kda: {
+				kill: 0,
+				death: 0,
+				help: 0,
+			},
+			class: {
+				points: 3,
+				icon: "Серебро",
+			},
+		},
+		{
+			heroName: "Эймон",
+			kda: {
+				kill: 0,
+				death: 0,
+				help: 0,
+			},
+			class: {
+				points: 3,
+				icon: "Серебро",
+			},
+		},
+	],
+	enemyTeam: [
+		{
+			heroName: "Эймон",
+			kda: {
+				kill: 0,
+				death: 0,
+				help: 0,
+			},
+			class: {
+				points: 3,
+				icon: "Серебро",
+			},
+		},
+		{
+			heroName: "Эймон",
+			kda: {
+				kill: 0,
+				death: 0,
+				help: 0,
+			},
+			class: {
+				points: 3,
+				icon: "Серебро",
+			},
+		},
+		{
+			heroName: "Эймон",
+			kda: {
+				kill: 0,
+				death: 0,
+				help: 0,
+			},
+			class: {
+				points: 3,
+				icon: "Серебро",
+			},
+		},
+		{
+			heroName: "Эймон",
+			kda: {
+				kill: 0,
+				death: 0,
+				help: 0,
+			},
+			class: {
+				points: 3,
+				icon: "Серебро",
+			},
+		},
+		{
+			heroName: "Эймон",
+			kda: {
+				kill: 0,
+				death: 0,
+				help: 0,
+			},
+			class: {
+				points: 3,
+				icon: "Серебро",
+			},
+		},
+	],
+	score: {
+		myTeam: 0,
+		enemyTeam: 0,
+	},
+	rang: {
+		starsDifference: 0,
+	},
+};
