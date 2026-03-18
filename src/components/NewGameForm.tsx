@@ -1,11 +1,14 @@
+import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import type { IBattle, IRangInfo } from "../gamesInfo";
+import type { IBattle, StarsDifferenceType } from "../gamesInfo";
 import type { HeroesNameType } from "../heroesNames";
 import { heroes } from "../heroesNames";
+import { battleFormStore } from "../store/NewBattleFormStore";
 import { HeroInfoInput } from "./HeroInfoInput";
 import {
 	createDefaultHeroInfo,
 	type HeroInfoFormState,
+	heroNames,
 	mapHeroFormToHeroInfo,
 } from "./heroInfoForm.utils";
 import { NumberInput } from "./NumberInput";
@@ -15,11 +18,7 @@ type NewGameFormProps = {
 	onCreate: (battle: IBattle) => void;
 };
 
-const rangNames: Array<IRangInfo["rangName"]> = ["Эпик", "Легенда", "Мифик"];
-const rangNumbers: Array<IRangInfo["rangNumber"]> = [1, 2, 3, 4, 5];
-const starsDifferenceValues: Array<IBattle["rang"]["starsDifference"]> = [
-	-1, 0, 1,
-];
+const starsDifferenceValues: Array<StarsDifferenceType> = [-1, 0, 1];
 
 function createTeam(heroName: HeroesNameType): HeroInfoFormState[] {
 	return Array.from({ length: 5 }, () => createDefaultHeroInfo(heroName));
@@ -51,31 +50,8 @@ function formatBattleForClipboard(
 		.replace(/date:\\s*"([0-9-]+)"/, 'date: new Date("$1")')},`;
 }
 
-export function NewGameForm({ onCreate }: NewGameFormProps) {
-	const heroNames = Object.values(heroes).map(
-		(hero) => hero.name,
-	) as HeroesNameType[];
-	const defaultHeroName = heroNames[0];
-
-	const [win, setWin] = useState(true);
-	const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
-	const [battleTime, setBattleTime] = useState(10);
-	const [myHero, setMyHero] = useState(() =>
-		createDefaultHeroInfo(defaultHeroName),
-	);
-	const [myTeam, setMyTeam] = useState<HeroInfoFormState[]>(() =>
-		createTeam(defaultHeroName),
-	);
-	const [enemyTeam, setEnemyTeam] = useState<HeroInfoFormState[]>(() =>
-		createTeam(defaultHeroName),
-	);
-	const [myTeamScore, setMyTeamScore] = useState(0);
-	const [enemyTeamScore, setEnemyTeamScore] = useState(0);
-	const [starsDifference, setStarsDifference] =
-		useState<IBattle["rang"]["starsDifference"]>(0);
+export const NewGameForm = observer(({ onCreate }: NewGameFormProps) => {
 	const [submitError, setSubmitError] = useState("");
-	const [copyStatus, setCopyStatus] = useState("");
-	const [createdGames, setCreatedGames] = useState(0);
 
 	const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (
 		event,
@@ -84,42 +60,43 @@ export function NewGameForm({ onCreate }: NewGameFormProps) {
 
 		try {
 			const battle: IBattle = {
-				win,
-				date: new Date(date),
-				battleTime,
-				myHero: mapHeroFormToHeroInfo(myHero),
-				myTeam: asTupleOfFive(myTeam.map(mapHeroFormToHeroInfo)),
-				enemyTeam: asTupleOfFive(enemyTeam.map(mapHeroFormToHeroInfo)),
+				win: battleFormStore.win,
+				date: new Date(battleFormStore.date),
+				battleTime: battleFormStore.battleTime,
+				myHero: mapHeroFormToHeroInfo(battleFormStore.myHero),
+				myTeam: asTupleOfFive(
+					battleFormStore.myTeam.map(mapHeroFormToHeroInfo),
+				),
+				enemyTeam: asTupleOfFive(
+					battleFormStore.enemyTeam.map(mapHeroFormToHeroInfo),
+				),
 				score: {
-					myTeam: myTeamScore,
-					enemyTeam: enemyTeamScore,
+					myTeam: battleFormStore.myTeamScore,
+					enemyTeam: battleFormStore.enemyTeamScore,
 				},
 				rang: {
-					starsDifference,
+					starsDifference: battleFormStore.starsDifference,
 				},
 			};
 
 			onCreate(battle);
-			setCreatedGames((value) => value + 1);
+
 			setSubmitError("");
 
 			if (!navigator.clipboard?.writeText) {
-				setCopyStatus("Игра добавлена, но буфер обмена недоступен");
-				return;
+				throw new Error("Игра добавлена, но буфер обмена недоступен");
 			}
 
 			try {
 				await navigator.clipboard.writeText(
-					formatBattleForClipboard(battle, date),
+					formatBattleForClipboard(battle, battleFormStore.date),
 				);
-				setCopyStatus("Объект игры скопирован в буфер обмена");
 			} catch {
-				setCopyStatus(
+				throw new Error(
 					"Игра добавлена, но не удалось скопировать объект в буфер обмена",
 				);
 			}
 		} catch (error) {
-			setCopyStatus("");
 			setSubmitError(
 				error instanceof Error
 					? error.message
@@ -138,8 +115,10 @@ export function NewGameForm({ onCreate }: NewGameFormProps) {
 					<label className="field">
 						<span>Результат</span>
 						<select
-							value={win ? "win" : "lose"}
-							onChange={(event) => setWin(event.currentTarget.value === "win")}
+							value={battleFormStore.win ? "win" : "lose"}
+							onChange={(event) => {
+								battleFormStore.setWin(event.currentTarget.value === "win");
+							}}
 						>
 							<option value="win">Победа</option>
 							<option value="lose">Поражение</option>
@@ -149,40 +128,40 @@ export function NewGameForm({ onCreate }: NewGameFormProps) {
 						<span>Дата</span>
 						<input
 							type="date"
-							value={date}
-							onChange={(event) => setDate(event.currentTarget.value)}
+							value={battleFormStore.date}
+							onChange={(event) =>
+								battleFormStore.setDate(event.currentTarget.value)
+							}
 							required
 						/>
 					</label>
 					<NumberInput
 						label="Время битвы (сек.)"
-						value={battleTime}
-						onChange={setBattleTime}
+						value={battleFormStore.battleTime}
+						onChange={battleFormStore.setBattleTime}
 						min={0}
 					/>
 					<NumberInput
 						label="Очки моей команды"
-						value={myTeamScore}
-						onChange={setMyTeamScore}
+						value={battleFormStore.myTeamScore}
+						onChange={battleFormStore.setMyTeamScore}
 						min={0}
 					/>
 					<NumberInput
 						label="Очки вражеской команды"
-						value={enemyTeamScore}
-						onChange={setEnemyTeamScore}
+						value={battleFormStore.enemyTeamScore}
+						onChange={battleFormStore.setEnemyTeamScore}
 						min={0}
 					/>
 					<label className="field">
 						<span>Звезды за игру</span>
 						<select
-							value={String(starsDifference)}
-							onChange={(event) =>
-								setStarsDifference(
-									Number(
-										event.currentTarget.value,
-									) as IBattle["rang"]["starsDifference"],
-								)
-							}
+							value={String(battleFormStore.starsDifference)}
+							onChange={(event) => {
+								battleFormStore.setStarsDifference(
+									Number(event.currentTarget.value) as StarsDifferenceType,
+								);
+							}}
 						>
 							{starsDifferenceValues.map((value) => (
 								<option key={value} value={value}>
@@ -197,28 +176,27 @@ export function NewGameForm({ onCreate }: NewGameFormProps) {
 			<HeroInfoInput
 				title="Мой герой"
 				heroNames={heroNames}
-				value={myHero}
-				onChange={setMyHero}
+				value={battleFormStore.myHero}
+				onChange={battleFormStore.setMyHero}
 			/>
 			<TeamInput
 				title="Моя команда"
 				heroNames={heroNames}
-				value={myTeam}
-				onChange={setMyTeam}
+				value={battleFormStore.myTeam}
+				onChange={battleFormStore.setMyTeam}
 			/>
 			<TeamInput
 				title="Вражеская команда"
 				heroNames={heroNames}
-				value={enemyTeam}
-				onChange={setEnemyTeam}
+				value={battleFormStore.enemyTeam}
+				onChange={battleFormStore.setEnemyTeam}
 			/>
 
 			<div className="actions-row">
 				<button type="submit">Добавить игру</button>
-				{createdGames > 0 && <span>Добавлено игр: {createdGames}</span>}
 			</div>
-			{copyStatus && <p>{copyStatus}</p>}
+
 			{submitError && <p className="error-text">{submitError}</p>}
 		</form>
 	);
-}
+});

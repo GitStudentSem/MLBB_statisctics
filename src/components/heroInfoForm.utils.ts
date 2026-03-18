@@ -1,5 +1,5 @@
 import type { IHeroInfo } from "../gamesInfo";
-import type { HeroesNameType } from "../heroesNames";
+import { type HeroesNameType, heroes } from "../heroesNames";
 
 export type HeroInfoFormState = {
 	heroName: HeroesNameType;
@@ -18,7 +18,9 @@ export const classIcons: Array<IHeroInfo["class"]["icon"]> = [
 	"МВП проигравей команды",
 ];
 
-export function createDefaultHeroInfo(heroName: HeroesNameType): HeroInfoFormState {
+export function createDefaultHeroInfo(
+	heroName: HeroesNameType,
+): HeroInfoFormState {
 	return {
 		heroName,
 		kill: 0,
@@ -43,3 +45,9 @@ export function mapHeroFormToHeroInfo(formState: HeroInfoFormState): IHeroInfo {
 		},
 	};
 }
+
+export const heroNames = Object.values(heroes).map(
+	(hero) => hero.name,
+) as HeroesNameType[];
+
+export const defaultHeroName = heroNames[0];

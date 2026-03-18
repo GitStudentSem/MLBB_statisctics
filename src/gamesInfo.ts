@@ -67,6 +67,8 @@ export interface IHeroInfo {
 	};
 }
 
+export type StarsDifferenceType = -1 | 0 | 1;
+
 export interface IBattle {
 	/**
 	 * @description Победа или поражение
@@ -120,7 +122,7 @@ export interface IBattle {
 		/**
 		 * @description Сколько звезд я получил за игру
 		 */
-		starsDifference: -1 | 0 | 1;
+		starsDifference: StarsDifferenceType;
 	};
 }
 
@@ -706,6 +708,302 @@ export const battls: IBattle[] = [
 		},
 		rang: {
 			starsDifference: -1,
+		},
+	},
+	{
+		win: true,
+		date: new Date("2026-03-18"),
+		battleTime: 681,
+		myHero: {
+			heroName: "Хилос",
+			kda: {
+				kill: 3,
+				death: 3,
+				help: 14,
+			},
+			class: {
+				points: 9.6,
+				icon: "Золото",
+			},
+		},
+		myTeam: [
+			{
+				heroName: "Чичи",
+				kda: {
+					kill: 9,
+					death: 0,
+					help: 9,
+				},
+				class: {
+					points: 12.5,
+					icon: "МВП победившей команды",
+				},
+			},
+			{
+				heroName: "Валир",
+				kda: {
+					kill: 2,
+					death: 2,
+					help: 13,
+				},
+				class: {
+					points: 9.2,
+					icon: "Золото",
+				},
+			},
+			{
+				heroName: "Хилос",
+				kda: {
+					kill: 2,
+					death: 3,
+					help: 14,
+				},
+				class: {
+					points: 9.6,
+					icon: "Золото",
+				},
+			},
+			{
+				heroName: "Эймон",
+				kda: {
+					kill: 4,
+					death: 0,
+					help: 8,
+				},
+				class: {
+					points: 9.7,
+					icon: "Золото",
+				},
+			},
+			{
+				heroName: "Грейнджер",
+				kda: {
+					kill: 5,
+					death: 0,
+					help: 7,
+				},
+				class: {
+					points: 9.8,
+					icon: "Золото",
+				},
+			},
+		],
+		enemyTeam: [
+			{
+				heroName: "Лапу-Лапу",
+				kda: {
+					kill: 0,
+					death: 5,
+					help: 1,
+				},
+				class: {
+					points: 3.5,
+					icon: "Шоколад",
+				},
+			},
+			{
+				heroName: "Минотавр",
+				kda: {
+					kill: 1,
+					death: 9,
+					help: 1,
+				},
+				class: {
+					points: 3.3,
+					icon: "Шоколад",
+				},
+			},
+			{
+				heroName: "Ксавьер",
+				kda: {
+					kill: 1,
+					death: 1,
+					help: 4,
+				},
+				class: {
+					points: 7.3,
+					icon: "МВП проигравей команды",
+				},
+			},
+			{
+				heroName: "Иритель",
+				kda: {
+					kill: 2,
+					death: 3,
+					help: 0,
+				},
+				class: {
+					points: 4.5,
+					icon: "Серебро",
+				},
+			},
+			{
+				heroName: "Леоморд",
+				kda: {
+					kill: 1,
+					death: 4,
+					help: 1,
+				},
+				class: {
+					points: 3.9,
+					icon: "Шоколад",
+				},
+			},
+		],
+		score: {
+			myTeam: 22,
+			enemyTeam: 5,
+		},
+		rang: {
+			starsDifference: 1,
+		},
+	},
+	{
+		win: false,
+		date: new Date("2026-03-18"),
+		battleTime: 1095,
+		myHero: {
+			heroName: "Хильда",
+			kda: {
+				kill: 7,
+				death: 9,
+				help: 9,
+			},
+			class: {
+				points: 7.6,
+				icon: "Золото",
+			},
+		},
+		myTeam: [
+			{
+				heroName: "Ханаби",
+				kda: {
+					kill: 2,
+					death: 11,
+					help: 10,
+				},
+				class: {
+					points: 4.8,
+					icon: "Серебро",
+				},
+			},
+			{
+				heroName: "Бейн",
+				kda: {
+					kill: 4,
+					death: 5,
+					help: 12,
+				},
+				class: {
+					points: 8.5,
+					icon: "МВП проигравей команды",
+				},
+			},
+			{
+				heroName: "Ли Сун Син",
+				kda: {
+					kill: 7,
+					death: 7,
+					help: 11,
+				},
+				class: {
+					points: 7.8,
+					icon: "Золото",
+				},
+			},
+			{
+				heroName: "Вексана",
+				kda: {
+					kill: 6,
+					death: 5,
+					help: 11,
+				},
+				class: {
+					points: 8.4,
+					icon: "Золото",
+				},
+			},
+			{
+				heroName: "Хильда",
+				kda: {
+					kill: 7,
+					death: 9,
+					help: 9,
+				},
+				class: {
+					points: 7.6,
+					icon: "Золото",
+				},
+			},
+		],
+		enemyTeam: [
+			{
+				heroName: "Глу",
+				kda: {
+					kill: 3,
+					death: 8,
+					help: 10,
+				},
+				class: {
+					points: 5.7,
+					icon: "Серебро",
+				},
+			},
+			{
+				heroName: "Ангела",
+				kda: {
+					kill: 3,
+					death: 4,
+					help: 25,
+				},
+				class: {
+					points: 10.5,
+					icon: "Золото",
+				},
+			},
+			{
+				heroName: "Су Ё",
+				kda: {
+					kill: 15,
+					death: 4,
+					help: 11,
+				},
+				class: {
+					points: 13.1,
+					icon: "МВП победившей команды",
+				},
+			},
+			{
+				heroName: "Госсен",
+				kda: {
+					kill: 10,
+					death: 7,
+					help: 14,
+				},
+				class: {
+					points: 9,
+					icon: "Золото",
+				},
+			},
+			{
+				heroName: "Керри",
+				kda: {
+					kill: 6,
+					death: 3,
+					help: 7,
+				},
+				class: {
+					points: 7.5,
+					icon: "Золото",
+				},
+			},
+		],
+		score: {
+			myTeam: 26,
+			enemyTeam: 37,
+		},
+		rang: {
+			starsDifference: 0,
 		},
 	},
 ];
