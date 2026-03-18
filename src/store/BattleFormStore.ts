@@ -11,7 +11,7 @@ function createTeam(heroName: HeroesNameType): HeroInfoFormState[] {
 	return Array.from({ length: 5 }, () => createDefaultHeroInfo(heroName));
 }
 
-class BattleFormStore {
+export class BattleFormStore {
 	// TODO: перенеси сюда поля из NewGameForm useState
 	win = true;
 	date = new Date().toISOString().slice(0, 10);
@@ -70,5 +70,3 @@ class BattleFormStore {
 	// toBattle(): IBattle { ... }
 	// reset(): void { ... }
 }
-
-export const battleFormStore = new BattleFormStore();

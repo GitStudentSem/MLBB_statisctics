@@ -1,11 +1,13 @@
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import type { IBattle, StarsDifferenceType } from "../gamesInfo";
-import { battleFormStore } from "../store/NewBattleFormStore";
+import { rootStore } from "../store/RootStore";
 import { HeroInfoInput } from "./HeroInfoInput";
-import { heroNames, mapHeroFormToHeroInfo } from "./heroInfoForm.utils";
+import { mapHeroFormToHeroInfo } from "./heroInfoForm.utils";
 import { NumberInput } from "./NumberInput";
 import { TeamInput } from "./TeamInput";
+
+const battleFormStore = rootStore.BattleFormStore;
 
 type NewGameFormProps = {
 	onCreate: (battle: IBattle) => void;
