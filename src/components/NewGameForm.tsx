@@ -1,13 +1,11 @@
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import type { IBattle, StarsDifferenceType } from "../gamesInfo";
-import { rootStore } from "../store/RootStore";
+import { useStores } from "../store/ContextStore";
 import { HeroInfoInput } from "./HeroInfoInput";
 import { mapHeroFormToHeroInfo } from "./heroInfoForm.utils";
 import { NumberInput } from "./NumberInput";
 import { TeamInput } from "./TeamInput";
-
-const battleFormStore = rootStore.BattleFormStore;
 
 type NewGameFormProps = {
 	onCreate: (battle: IBattle) => void;
@@ -42,6 +40,8 @@ function formatBattleForClipboard(
 }
 
 export const NewGameForm = observer(({ onCreate }: NewGameFormProps) => {
+	const { battleFormStore } = useStores();
+
 	const [submitError, setSubmitError] = useState("");
 
 	const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (

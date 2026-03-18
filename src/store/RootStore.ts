@@ -5,13 +5,13 @@ import { StatsStore } from "./StatsStore";
 
 export class RootStore {
 	matchesStore: MatchesStore;
-	BattleFormStore: BattleFormStore;
+	battleFormStore: BattleFormStore;
 	rankStore: RankStore;
 	statsStore: StatsStore;
 
 	constructor() {
 		this.matchesStore = new MatchesStore();
-		this.BattleFormStore = new BattleFormStore();
+		this.battleFormStore = new BattleFormStore();
 		this.rankStore = new RankStore(this.matchesStore);
 		this.statsStore = new StatsStore(this.matchesStore);
 	}
