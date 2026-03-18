@@ -1,16 +1,9 @@
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
 import type { IBattle, StarsDifferenceType } from "../gamesInfo";
-import type { HeroesNameType } from "../heroesNames";
-import { heroes } from "../heroesNames";
 import { battleFormStore } from "../store/NewBattleFormStore";
 import { HeroInfoInput } from "./HeroInfoInput";
-import {
-	createDefaultHeroInfo,
-	type HeroInfoFormState,
-	heroNames,
-	mapHeroFormToHeroInfo,
-} from "./heroInfoForm.utils";
+import { heroNames, mapHeroFormToHeroInfo } from "./heroInfoForm.utils";
 import { NumberInput } from "./NumberInput";
 import { TeamInput } from "./TeamInput";
 
@@ -19,10 +12,6 @@ type NewGameFormProps = {
 };
 
 const starsDifferenceValues: Array<StarsDifferenceType> = [-1, 0, 1];
-
-function createTeam(heroName: HeroesNameType): HeroInfoFormState[] {
-	return Array.from({ length: 5 }, () => createDefaultHeroInfo(heroName));
-}
 
 function asTupleOfFive<T>(arr: T[]): [T, T, T, T, T] {
 	if (arr.length !== 5) {
@@ -175,19 +164,16 @@ export const NewGameForm = observer(({ onCreate }: NewGameFormProps) => {
 
 			<HeroInfoInput
 				title="Мой герой"
-				heroNames={heroNames}
 				value={battleFormStore.myHero}
 				onChange={battleFormStore.setMyHero}
 			/>
 			<TeamInput
 				title="Моя команда"
-				heroNames={heroNames}
 				value={battleFormStore.myTeam}
 				onChange={battleFormStore.setMyTeam}
 			/>
 			<TeamInput
 				title="Вражеская команда"
-				heroNames={heroNames}
 				value={battleFormStore.enemyTeam}
 				onChange={battleFormStore.setEnemyTeam}
 			/>

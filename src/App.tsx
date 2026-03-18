@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { NewGameForm } from "./components/NewGameForm";
-import { accountStartingRang, battls, type IBattle, type IRangInfo } from "./gamesInfo";
+import { accountStartingRang, battls, type IBattle } from "./gamesInfo";
 
 function App() {
 	const [games, setGames] = useState<IBattle[]>(battls);
-	const [rangInfo, setRangInfo] = useState<IRangInfo>(accountStartingRang);
 
 	return (
 		<main className="page">
@@ -17,7 +16,8 @@ function App() {
 				<h2>Текущее состояние</h2>
 				<p>Всего игр: {games.length}</p>
 				<p>
-					Текущий ранг: {rangInfo.rangName} {rangInfo.rangNumber}, звезд: {rangInfo.stars}
+					Текущий ранг: {accountStartingRang.rangName}{" "}
+					{accountStartingRang.rangNumber}, звезд: {accountStartingRang.stars}
 				</p>
 			</section>
 		</main>

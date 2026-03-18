@@ -1,20 +1,19 @@
 import type { HeroesNameType } from "../heroesNames";
+import {
+	classIcons,
+	type HeroInfoFormState,
+	heroNames,
+} from "./heroInfoForm.utils";
 import { NumberInput } from "./NumberInput";
-import { classIcons, type HeroInfoFormState } from "./heroInfoForm.utils";
 
 type HeroInfoInputProps = {
 	title: string;
-	heroNames: HeroesNameType[];
+
 	value: HeroInfoFormState;
 	onChange: (value: HeroInfoFormState) => void;
 };
 
-export function HeroInfoInput({
-	title,
-	heroNames,
-	value,
-	onChange,
-}: HeroInfoInputProps) {
+export function HeroInfoInput({ title, value, onChange }: HeroInfoInputProps) {
 	return (
 		<section className="hero-input card">
 			<h3>{title}</h3>
@@ -69,7 +68,8 @@ export function HeroInfoInput({
 						onChange={(event) =>
 							onChange({
 								...value,
-								classIcon: event.currentTarget.value as HeroInfoFormState["classIcon"],
+								classIcon: event.currentTarget
+									.value as HeroInfoFormState["classIcon"],
 							})
 						}
 					>
