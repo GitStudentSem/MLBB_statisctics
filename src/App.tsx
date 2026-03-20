@@ -1,20 +1,15 @@
-import { useState } from "react";
 import { NewGameForm } from "./components/NewGameForm";
-import { accountStartingRang, battls, type IBattle } from "./gamesInfo";
+import { accountStartingRang, battls } from "./gamesInfo";
+import { calculateClassPointRanges } from "./utils/classRanges";
 
 function App() {
-	const [games, setGames] = useState<IBattle[]>(battls);
-
+	calculateClassPointRanges();
 	return (
 		<main className="page">
-			<NewGameForm
-				onCreate={(newBattle) => {
-					setGames((prevGames) => [...prevGames, newBattle]);
-				}}
-			/>
+			<NewGameForm />
 			<section className="card">
 				<h2>Текущее состояние</h2>
-				<p>Всего игр: {games.length}</p>
+				<p>Всего игр: {battls.length}</p>
 				<p>
 					Текущий ранг: {accountStartingRang.rangName}{" "}
 					{accountStartingRang.rangNumber}, звезд: {accountStartingRang.stars}

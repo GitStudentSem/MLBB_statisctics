@@ -66,6 +66,8 @@ export class BattleFormStore {
 		this.starsDifference = starsDifference;
 	}
 
+	calculateRangIcon() {}
+
 	// Когда перенесешь все поля:
 	// toBattle(): IBattle { ... }
 	// reset(): void { ... }

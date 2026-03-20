@@ -7,10 +7,6 @@ import { mapHeroFormToHeroInfo } from "./heroInfoForm.utils";
 import { NumberInput } from "./NumberInput";
 import { TeamInput } from "./TeamInput";
 
-type NewGameFormProps = {
-	onCreate: (battle: IBattle) => void;
-};
-
 const starsDifferenceValues: Array<StarsDifferenceType> = [-1, 0, 1];
 
 function asTupleOfFive<T>(arr: T[]): [T, T, T, T, T] {
@@ -39,7 +35,7 @@ function formatBattleForClipboard(
 		.replace(/date:\\s*"([0-9-]+)"/, 'date: new Date("$1")')},`;
 }
 
-export const NewGameForm = observer(({ onCreate }: NewGameFormProps) => {
+export const NewGameForm = observer(() => {
 	const { battleFormStore } = useStores();
 
 	const [submitError, setSubmitError] = useState("");
@@ -69,8 +65,6 @@ export const NewGameForm = observer(({ onCreate }: NewGameFormProps) => {
 					starsDifference: battleFormStore.starsDifference,
 				},
 			};
-
-			onCreate(battle);
 
 			setSubmitError("");
 

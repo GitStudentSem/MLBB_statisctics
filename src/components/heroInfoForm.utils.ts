@@ -15,7 +15,7 @@ export const classIcons: Array<IHeroInfo["class"]["icon"]> = [
 	"Серебро",
 	"Золото",
 	"МВП победившей команды",
-	"МВП проигравей команды",
+	"МВП проигравшей команды",
 ];
 
 export function createDefaultHeroInfo(

@@ -1,3 +1,5 @@
+// https://mobile-legends.fandom.com/wiki/List_of_heroes
+
 type HeroMeta = { name: string; icon: string };
 
 export const heroes = {
@@ -133,6 +135,7 @@ export const heroes = {
 	zhask: { name: "Заск", icon: "/heroes_icons/zhask.webp" },
 	zhuxin: { name: "Чжу Синь", icon: "/heroes_icons/zhuxin.webp" },
 	zilong: { name: "Зилонг", icon: "/heroes_icons/zilong.webp" },
+	eudora: { name: "Эйдора", icon: "/heroes_icons/eudora.webp" },
 } as const satisfies Record<string, HeroMeta>;
 
 export type HeroId = keyof typeof heroes;
