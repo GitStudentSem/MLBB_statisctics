@@ -1458,7 +1458,7 @@ export const battls: IBattle[] = [
 	},
 	{
 		win: true,
-		date: "2026-03-24",
+		date: new Date("2026-03-24"),
 		battleTime: 836,
 		myHero: {
 			heroName: "Минотавр",
@@ -1606,7 +1606,7 @@ export const battls: IBattle[] = [
 	},
 	{
 		win: false,
-		date: "2026-03-24",
+		date: new Date("2026-03-24"),
 		battleTime: 1000,
 		myHero: {
 			heroName: "Минотавр",
