@@ -1752,4 +1752,152 @@ export const battls: IBattle[] = [
 			starsDifference: -1,
 		},
 	},
+	{
+		win: true,
+		date: "2026-03-26",
+		battleTime: 422,
+		myHero: {
+			heroName: "Белерик",
+			kda: {
+				kill: 1,
+				death: 5,
+				help: 5,
+			},
+			class: {
+				points: 5.6,
+				icon: "Серебро",
+			},
+		},
+		myTeam: [
+			{
+				heroName: "Мия",
+				kda: {
+					kill: 3,
+					death: 2,
+					help: 3,
+				},
+				class: {
+					points: 6.4,
+					icon: "Серебро",
+				},
+			},
+			{
+				heroName: "Аврора",
+				kda: {
+					kill: 2,
+					death: 2,
+					help: 3,
+				},
+				class: {
+					points: 6.4,
+					icon: "Серебро",
+				},
+			},
+			{
+				heroName: "Белерик",
+				kda: {
+					kill: 1,
+					death: 5,
+					help: 5,
+				},
+				class: {
+					points: 5.6,
+					icon: "Серебро",
+				},
+			},
+			{
+				heroName: "Руби",
+				kda: {
+					kill: 1,
+					death: 2,
+					help: 4,
+				},
+				class: {
+					points: 6.5,
+					icon: "Серебро",
+				},
+			},
+			{
+				heroName: "Инь",
+				kda: {
+					kill: 6,
+					death: 0,
+					help: 1,
+				},
+				class: {
+					points: 8.8,
+					icon: "МВП победившей команды",
+				},
+			},
+		],
+		enemyTeam: [
+			{
+				heroName: "Иксия",
+				kda: {
+					kill: 2,
+					death: 3,
+					help: 2,
+				},
+				class: {
+					points: 6.2,
+					icon: "Серебро",
+				},
+			},
+			{
+				heroName: "Мартис",
+				kda: {
+					kill: 4,
+					death: 3,
+					help: 1,
+				},
+				class: {
+					points: 5.7,
+					icon: "Серебро",
+				},
+			},
+			{
+				heroName: "Атлас",
+				kda: {
+					kill: 2,
+					death: 4,
+					help: 7,
+				},
+				class: {
+					points: 8.4,
+					icon: "МВП победившей команды",
+				},
+			},
+			{
+				heroName: "Сисилион",
+				kda: {
+					kill: 2,
+					death: 1,
+					help: 6,
+				},
+				class: {
+					points: 8.2,
+					icon: "Золото",
+				},
+			},
+			{
+				heroName: "Чичи",
+				kda: {
+					kill: 1,
+					death: 2,
+					help: 1,
+				},
+				class: {
+					points: 4.8,
+					icon: "Серебро",
+				},
+			},
+		],
+		score: {
+			myTeam: 13,
+			enemyTeam: 11,
+		},
+		rang: {
+			starsDifference: 1,
+		},
+	},
 ];

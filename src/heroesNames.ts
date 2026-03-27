@@ -136,6 +136,7 @@ export const heroes = {
 	zhuxin: { name: "Чжу Синь", icon: "/heroes_icons/zhuxin.webp" },
 	zilong: { name: "Зилонг", icon: "/heroes_icons/zilong.webp" },
 	eudora: { name: "Эйдора", icon: "/heroes_icons/eudora.webp" },
+	obsidia: { name: "Обсидия", icon: "/heroes_icons/obsidia.webp" },
 } as const satisfies Record<string, HeroMeta>;
 
 export type HeroId = keyof typeof heroes;
